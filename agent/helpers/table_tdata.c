@@ -217,6 +217,8 @@ int
 netsnmp_tdata_add_row(netsnmp_tdata     *table,
                       netsnmp_tdata_row *row)
 {
+	snmp_log(LOG_ERR, "Entry netsnmp_tdata_add_row, table name = %s\n", table->name);
+
     if (!row || !table)
         return SNMPERR_GENERR;
 
