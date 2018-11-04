@@ -5728,6 +5728,7 @@ _sess_read(void *sessp, netsnmp_large_fd_set * fdset)
         return -1;
     }
 
+    snmp_log(LOG_ERR, "_sess_read(), transport->flags = 0x%x", transport->flags);
     if (transport->flags & NETSNMP_TRANSPORT_FLAG_STREAM) {
         u_char *pptr = isp->packet;
 	void *ocopy = NULL;
