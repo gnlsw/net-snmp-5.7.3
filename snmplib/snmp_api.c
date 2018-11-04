@@ -5502,13 +5502,15 @@ void
 snmp_read2(netsnmp_large_fd_set * fdset)
 {
     struct session_list *slp;
+	int loop = 1;
 
 	snmp_log(LOG_ERR, "Entry snmp_read2()\n");
 
     snmp_res_lock(MT_LIBRARY_ID, MT_LIB_SESSION);
     for (slp = Sessions; slp; slp = slp->next) {
-		snmp_log(LOG_ERR, "snmp_read2(), slp %p\n", slp);
+		snmp_log(LOG_ERR, "snmp_read2(), loop = %d, slp %p\n", loop, slp);
         snmp_sess_read2((void *) slp, fdset);
+		loop++;
     }
     snmp_res_unlock(MT_LIBRARY_ID, MT_LIB_SESSION);
 
