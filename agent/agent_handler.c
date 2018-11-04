@@ -490,6 +490,9 @@ netsnmp_call_handler(netsnmp_mib_handler *next_handler,
     Netsnmp_Node_Handler *nh;
     int             ret;
 
+	snmp_log(LOG_ERR, "Entry netsnmp_call_handler()\n");
+
+
     if (next_handler == NULL || reginfo == NULL || reqinfo == NULL ||
         requests == NULL) {
         snmp_log(LOG_ERR, "netsnmp_call_handler() called illegally\n");
@@ -559,6 +562,8 @@ netsnmp_call_handlers(netsnmp_handler_registration *reginfo,
     netsnmp_request_info *request;
     int             status;
 
+	snmp_log(LOG_ERR, "Entry netsnmp_call_handlers()\n");
+
     if (reginfo == NULL || reqinfo == NULL || requests == NULL) {
         snmp_log(LOG_ERR, "netsnmp_call_handlers() called illegally\n");
         netsnmp_assert(reqinfo != NULL);
@@ -626,6 +631,7 @@ netsnmp_call_next_handler(netsnmp_mib_handler *current,
                           netsnmp_agent_request_info *reqinfo,
                           netsnmp_request_info *requests)
 {
+	snmp_log(LOG_ERR, "Entry netsnmp_call_next_handler()\n");
 
     if (current == NULL || reginfo == NULL || reqinfo == NULL ||
         requests == NULL) {

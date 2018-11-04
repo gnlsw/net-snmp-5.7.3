@@ -2658,6 +2658,9 @@ handle_var_requests(netsnmp_agent_session *asp)
         status = SNMP_ERR_NOERROR, final_status = SNMP_ERR_NOERROR;
     netsnmp_handler_registration *reginfo;
 
+	snmp_log(LOG_ERR, "Entry handle_var_requests()\n");
+
+
     asp->reqinfo->asp = asp;
     asp->reqinfo->mode = asp->mode;
 
@@ -3233,6 +3236,8 @@ handle_set_loop(netsnmp_agent_session *asp)
 int
 netsnmp_handle_request(netsnmp_agent_session *asp, int status)
 {
+	snmp_log(LOG_ERR, "Entry netsnmp_handle_request()\n");
+
     /*
      * if this isn't a delegated request trying to finish,
      * processing of a set request should not start until all
@@ -3318,6 +3323,8 @@ handle_pdu(netsnmp_agent_session *asp)
 {
     int             status, inclusives = 0;
     netsnmp_variable_list *v = NULL;
+
+    snmp_log(LOG_ERR, "Entry handle_pdu()\n");
 
     /*
      * for illegal requests, mark all nodes as ASN_NULL 
