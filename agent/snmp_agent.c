@@ -1892,6 +1892,8 @@ handle_snmp_packet(int op, netsnmp_session * session, int reqid,
     netsnmp_agent_session *asp;
     int             status, access_ret, rc;
 
+	snmp_log(LOG_ERR, "Entry handle_snmp_packet\n");
+
     /*
      * We only support receiving here.  
      */
@@ -3324,7 +3326,8 @@ handle_pdu(netsnmp_agent_session *asp)
     int             status, inclusives = 0;
     netsnmp_variable_list *v = NULL;
 
-    snmp_log(LOG_ERR, "Entry handle_pdu()\n");
+    snmp_log(LOG_ERR, "Entry handle_pdu(), asp->pdu->command = %d\n",
+		asp->pdu->command);
 
     /*
      * for illegal requests, mark all nodes as ASN_NULL 
@@ -3347,6 +3350,7 @@ handle_pdu(netsnmp_agent_session *asp)
     case SNMP_MSG_GETNEXT:
     case SNMP_MSG_GETBULK:
         for (v = asp->pdu->variables; v != NULL; v = v->next_variable) {
+			snmp_log(LOG_ERR, "handle_pdu(), v->type = %d\n", v->type);
             if (v->type == ASN_PRIV_INCL_RANGE) {
                 /*
                  * Leave the type for now (it gets set to
