@@ -5193,6 +5193,9 @@ _sess_process_packet(void *sessp, netsnmp_session * sp,
   struct snmp_secmod_def *sptr;
   int             ret = 0, handled = 0;
 
+  snmp_log(LOG_ERR, "Entry _sess_process_packet(), session %p fd %d pkt %p length %d\n",
+		sessp, transport->sock, packetptr, length);
+
   DEBUGMSGTL(("sess_process_packet",
 	      "session %p fd %d pkt %p length %d\n", sessp,
 	      transport->sock, packetptr, length));
@@ -5497,6 +5500,9 @@ void
 snmp_read2(netsnmp_large_fd_set * fdset)
 {
     struct session_list *slp;
+
+	snmp_log(LOG_ERR, "Entry snmp_read2()\n");
+
     snmp_res_lock(MT_LIBRARY_ID, MT_LIB_SESSION);
     for (slp = Sessions; slp; slp = slp->next) {
         snmp_sess_read2((void *) slp, fdset);
@@ -5521,6 +5527,8 @@ _sess_read(void *sessp, netsnmp_large_fd_set * fdset)
     u_char         *rxbuf = NULL;
     int             length = 0, olength = 0, rc = 0;
     void           *opaque = NULL;
+
+	snmp_log(LOG_ERR, "Entry _sess_read()");
 
     if (!sp || !isp || !transport) {
         DEBUGMSGTL(("sess_read", "read fail: closing...\n"));
@@ -5902,6 +5910,8 @@ snmp_sess_read2(void *sessp, netsnmp_large_fd_set * fdset)
     struct session_list *psl;
     netsnmp_session *pss;
     int             rc;
+
+	snmp_log(LOG_ERR, "Entry snmp_sess_read2()");
 
     rc = _sess_read(sessp, fdset);
     psl = (struct session_list *) sessp;

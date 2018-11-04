@@ -640,6 +640,8 @@ agent_check_and_process(int block)
     int             count;
     int             fakeblock = 0;
 
+	snmp_log(LOG_ERR, "Entry agent_check_and_process(), block = %d\n", block);
+
     numfds = 0;
     FD_ZERO(&fdset);
     snmp_select_info(&numfds, &fdset, tvp, &fakeblock);
