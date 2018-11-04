@@ -5494,6 +5494,8 @@ snmp_read(fd_set * fdset)
     netsnmp_copy_fd_set_to_large_fd_set(&lfdset, fdset);
     snmp_read2(&lfdset);
     netsnmp_large_fd_set_cleanup(&lfdset);
+
+	snmp_log(LOG_ERR, "Exit snmp_read()\n");
 }
 
 void
@@ -5508,6 +5510,8 @@ snmp_read2(netsnmp_large_fd_set * fdset)
         snmp_sess_read2((void *) slp, fdset);
     }
     snmp_res_unlock(MT_LIBRARY_ID, MT_LIB_SESSION);
+
+	snmp_log(LOG_ERR, "Exit snmp_read2()\n");
 }
 
 /*
@@ -5919,6 +5923,9 @@ snmp_sess_read2(void *sessp, netsnmp_large_fd_set * fdset)
     if (rc && pss->s_snmp_errno) {
         SET_SNMP_ERROR(pss->s_snmp_errno);
     }
+
+	snmp_log(LOG_ERR, "Exit snmp_sess_read2()\n");
+	
     return rc;
 }
 
