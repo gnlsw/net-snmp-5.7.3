@@ -5485,6 +5485,8 @@ snmp_read(fd_set * fdset)
 {
     netsnmp_large_fd_set lfdset;
 
+	snmp_log(LOG_ERR, "Entry snmp_read()\n");
+
     netsnmp_large_fd_set_init(&lfdset, FD_SETSIZE);
     netsnmp_copy_fd_set_to_large_fd_set(&lfdset, fdset);
     snmp_read2(&lfdset);
