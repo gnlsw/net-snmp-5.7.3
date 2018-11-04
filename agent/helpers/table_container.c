@@ -590,6 +590,9 @@ _data_lookup(netsnmp_handler_registration *reginfo,
 
     var = request->requestvb;
 
+	snmp_log(LOG_ERR, "Entry _data_lookup(), var->name = %s\n",
+		var->name);
+
     DEBUGIF("table_container") {
         DEBUGMSGTL(("table_container", "  data_lookup oid:"));
         DEBUGMSGOID(("table_container", var->name, var->name_length));
@@ -704,6 +707,8 @@ _container_table_handler(netsnmp_mib_handler *handler,
     /** sanity checks */
     netsnmp_assert((NULL != handler) && (NULL != handler->myvoid));
     netsnmp_assert((NULL != reginfo) && (NULL != agtreq_info));
+
+	snmp_log(LOG_ERR, "Entry _container_table_handler()\n");
 
     DEBUGMSGTL(("table_container", "Mode %s, Got request:\n",
                 se_find_label_in_slist("agent_mode",agtreq_info->mode)));
