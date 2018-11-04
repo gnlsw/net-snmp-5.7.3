@@ -5528,7 +5528,7 @@ _sess_read(void *sessp, netsnmp_large_fd_set * fdset)
     int             length = 0, olength = 0, rc = 0;
     void           *opaque = NULL;
 
-	snmp_log(LOG_ERR, "Entry _sess_read()");
+	snmp_log(LOG_ERR, "Entry _sess_read()\n");
 
     if (!sp || !isp || !transport) {
         DEBUGMSGTL(("sess_read", "read fail: closing...\n"));
@@ -5911,7 +5911,7 @@ snmp_sess_read2(void *sessp, netsnmp_large_fd_set * fdset)
     netsnmp_session *pss;
     int             rc;
 
-	snmp_log(LOG_ERR, "Entry snmp_sess_read2()");
+	snmp_log(LOG_ERR, "Entry snmp_sess_read2()\n");
 
     rc = _sess_read(sessp, fdset);
     psl = (struct session_list *) sessp;
