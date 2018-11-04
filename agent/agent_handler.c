@@ -577,6 +577,9 @@ netsnmp_call_handlers(netsnmp_handler_registration *reginfo,
         return SNMP_ERR_GENERR;
     }
 
+	snmp_log(LOG_ERR, "netsnmp_call_handlers, reqinfo->mode = %d\n",
+		reqinfo->mode);
+
     switch (reqinfo->mode) {
     case MODE_GETBULK:
     case MODE_GET:
